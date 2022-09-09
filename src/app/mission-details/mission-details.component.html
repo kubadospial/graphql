@@ -1,0 +1,4 @@
+<ng-container *ngIf="details$ | async as details">
+  {{ details | json }}
+  <img [src]="details.image" alt="" />
+</ng-container>

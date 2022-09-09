@@ -7,10 +7,10 @@ const routes: Routes = [
   { path: '', component: ShipsListComponent },
   {
     path: ':name',
-    resolve: [DetailsResolver],
+    resolve: { name: DetailsResolver },
     loadComponent: () =>
-      import('./ship-details/ship-details.component').then(
-        (c) => c.ShipDetailsComponent
+      import('./mission-details/mission-details.component').then(
+        (c) => c.MissionDetailsComponent
       ),
   },
   { path: '**', redirectTo: '' },
