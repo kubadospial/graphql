@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let ship of ships$ | async" [routerLink]="ship.name">
+    {{ ship.name }} / {{ ship.type }}
+  </li>
+</ul>
