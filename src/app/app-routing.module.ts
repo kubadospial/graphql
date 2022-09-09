@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ShipsListComponent } from './ships-list/ships-list.component';
+import { MissionsListComponent } from './missions-list/missions-list.component';
 import { DetailsResolver } from './spacex/details.resolver';
 
 const routes: Routes = [
-  { path: '', component: ShipsListComponent },
+  { path: '', component: MissionsListComponent },
   {
     path: ':name',
     resolve: { name: DetailsResolver },
