@@ -1,70 +1,82 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { filter, map } from 'rxjs';
+import { AppService } from '../app.service';
 
 @Injectable({ providedIn: 'root' })
 export class SpaceXService {
   ships$ = this._apollo
     .watchQuery({
       query: gql`
-        query Ships {
-          ships {
+        query Missions {
+          missions {
             name
-            type
+            id
           }
         }
       `,
     })
     .valueChanges.pipe(
       filter(Boolean),
-      map((response: any) => response.data['ships'])
+      map((response: any) => response.data['missions'])
     );
 
-  constructor(private _apollo: Apollo) {}
+  constructor(private _apollo: Apollo, private _appService: AppService) {}
 
   getShipDetails(name: string) {
+    this._appService.startLoading();
     return this._apollo
       .query({
         query: gql`
-          query Ships($find: ShipsFind) {
-            ships(find: $find) {
-              model
-              name
-              type
-              status
-              year_built
-              weight_kg
-              url
-              successful_landings
-              speed_kn
-              roles
-              position {
-                latitude
-                longitude
-              }
-              missions {
-                flight
-                name
-              }
-              imo
-              image
-              home_port
-              course_deg
-              class
-              attempted_landings
-              active
-              abs
+          query Mission($missionId: ID!) {
+            mission(id: $missionId) {
+              description
               id
-              mmsi
+              manufacturers
+              name
+              payloads {
+                customers
+                id
+                manufacturer
+                nationality
+                norad_id
+                orbit
+                orbit_params {
+                  apoapsis_km
+                  arg_of_pericenter
+                  eccentricity
+                  epoch
+                  inclination_deg
+                  lifespan_years
+                  longitude
+                  mean_anomaly
+                  mean_motion
+                  periapsis_km
+                  period_min
+                  raan
+                  reference_system
+                  regime
+                  semi_major_axis_km
+                }
+                payload_mass_kg
+                payload_type
+                reused
+              }
+              twitter
+              website
+              wikipedia
             }
           }
         `,
         variables: {
-          find: {
-            name,
-          },
+          missionId: name,
         },
       })
-      .pipe(map((response: any) => response.data.ships[0]));
+      .pipe(
+        map((response: any) => {
+          this._appService.stopLoading();
+          return response.data.mission;
+        })
+      );
   }
 }

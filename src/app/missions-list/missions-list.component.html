@@ -1,5 +1,13 @@
-<ul>
-  <li *ngFor="let ship of ships$ | async" [routerLink]="ship.name">
-    {{ ship.name }} / {{ ship.type }}
-  </li>
-</ul>
+<mat-card>
+  <mat-card-title>
+    <h1>SpaceX Missions</h1>
+  </mat-card-title>
+
+  <mat-card-content>
+    <ul>
+      <li *ngFor="let ship of ships$ | async" [routerLink]="ship.id">
+        {{ ship.name }} / {{ ship.type }}
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

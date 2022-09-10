@@ -1,4 +1,28 @@
 <ng-container *ngIf="details$ | async as details">
-  {{ details | json }}
-  <img [src]="details.image" alt="" />
+  <mat-card>
+    <mat-card-title>
+      <h1>Mission {{ details.name }}</h1>
+    </mat-card-title>
+
+    <mat-card-content>
+      <p>{{ details.description }}</p>
+
+      <h2>Payloads</h2>
+      <ng-container *ngFor="let payload of details.payloads">
+        <section class="payload" *ngIf="payload">
+          <h3>{{ payload?.id }}</h3>
+          <p>Nationality: {{ payload?.nationality }}</p>
+          <p>Orbit: {{ payload?.orbit }}</p>
+          <p>Payload type: {{ payload?.payload_type }}</p>
+          <p>Payload mass (kg): {{ payload?.payload_mass_kg }}</p>
+        </section>
+      </ng-container>
+
+      <section>
+        <a href="{{ details.twitter }}" target="_blank">Twitter</a>
+        <a href="{{ details.website }}" target="_blank">Website</a>
+        <a href="{{ details.wikipedia }}" target="_blank">Wikipedia</a>
+      </section>
+    </mat-card-content>
+  </mat-card>
 </ng-container>
