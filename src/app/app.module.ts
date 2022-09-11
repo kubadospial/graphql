@@ -8,8 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxThreeModule } from 'ngx-three';
+import { CanvasComponent } from './canvas/canvas.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, CanvasComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -18,6 +20,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     BrowserAnimationsModule,
     NgbModule,
     MatProgressSpinnerModule,
+    NgxThreeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

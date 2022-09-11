@@ -1,8 +1,12 @@
 import { trigger, transition, style, animate } from '@angular/animations';
 
-export const SMOOTH_ENTER = trigger('smoothEnter', [
-  transition(':enter', [
-    style({ opacity: 0 }),
-    animate('500ms', style({ opacity: 1 })),
-  ]),
-]);
+const getEnter = (name: string, time: string) =>
+  trigger(name, [
+    transition(':enter', [
+      style({ opacity: 0 }),
+      animate(time, style({ opacity: 1 })),
+    ]),
+  ]);
+export const SMOOTH_ENTER = getEnter('smoothEnter', '500ms');
+
+export const QUICK_ENTER = getEnter('quickEnter', '200ms');

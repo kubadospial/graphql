@@ -13,6 +13,9 @@
   left: calc(50vw - 50px);
 }
 
-.main-loading {
-  filter: blur(5px);
+.main {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: flex-end;
 }

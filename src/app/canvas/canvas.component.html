@@ -1,0 +1,45 @@
+<th-canvas>
+  <th-scene [background]="background">
+    <!-- <th-ambientLight> </th-ambientLight> -->
+    <!-- <th-pointLightHelper [objRef]="light"> </th-pointLightHelper> -->
+    <th-pointLight #light [position]="[10, 10, 10]"></th-pointLight>
+    <!-- stars -->
+    <!-- <ng-container *ngFor="let position of stars">
+        <th-meshPhongMaterial
+          #mat
+          [shininess]="30"
+          [color]="['#FFFFFF']"
+        ></th-meshPhongMaterial>
+        <th-sphereGeometry #geo [args]="[0.25, 12, 12]"></th-sphereGeometry>
+  
+        <th-mesh
+          [geometry]="geo.objRef"
+          [material]="mat.objRef"
+          [position]="position"
+        >
+        </th-mesh>
+      </ng-container> -->
+
+    <!-- earth -->
+    <th-meshStandardMaterial #mat [map]="earth"></th-meshStandardMaterial>
+    <th-sphereGeometry #geo [args]="[10, 32, 32]"></th-sphereGeometry>
+
+    <th-mesh
+      *ngIf="rotateEarth$ | async as rotation"
+      [geometry]="geo.objRef"
+      [material]="mat.objRef"
+      [rotation]="rotation"
+      [position]="[0, 0, 12]"
+    >
+    </th-mesh>
+
+    <th-perspectiveCamera
+      [args]="[75, this.screenRatio, 0.1, 1000]"
+      [position]="[10, 10, 10]"
+      [lookAt]="[0, 0, 0]"
+    >
+      <!-- <th-orbitControls></th-orbitControls> -->
+    </th-perspectiveCamera>
+    <!-- <th-gridHelper [args]="[10, 10]"></th-gridHelper> -->
+  </th-scene>
+</th-canvas>

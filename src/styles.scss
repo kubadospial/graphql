@@ -34,6 +34,9 @@ $theme: mat.define-light-theme(
 // that you are using.
 @include mat.all-component-themes($theme);
 
+/* Importing Bootstrap SCSS file. */
+@import "./node_modules/bootstrap/scss/bootstrap";
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -59,7 +62,5 @@ p {
 html,
 body {
   height: 100%;
+  background-color: #000;
 }
-
-/* Importing Bootstrap SCSS file. */
-@import "./node_modules/bootstrap/scss/bootstrap";
