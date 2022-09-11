@@ -5,25 +5,32 @@ import { AppService } from '../app.service';
 
 @Injectable({ providedIn: 'root' })
 export class SpaceXService {
-  ships$ = this._apollo
-    .watchQuery({
-      query: gql`
-        query Missions {
-          missions {
-            name
-            id
-          }
-        }
-      `,
-    })
-    .valueChanges.pipe(
-      filter(Boolean),
-      map((response: any) => response.data['missions'])
-    );
-
   constructor(private _apollo: Apollo, private _appService: AppService) {}
 
-  getShipDetails(name: string) {
+  getMissionsList() {
+    this._appService.startLoading();
+
+    return this._apollo
+      .watchQuery({
+        query: gql`
+          query Missions {
+            missions {
+              name
+              id
+            }
+          }
+        `,
+      })
+      .valueChanges.pipe(
+        filter(Boolean),
+        map((response: any) => {
+          this._appService.stopLoading();
+          return response.data['missions'];
+        })
+      );
+  }
+
+  getMissionDetails(name: string) {
     this._appService.startLoading();
     return this._apollo
       .query({

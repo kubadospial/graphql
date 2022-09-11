@@ -1,12 +1,14 @@
-<mat-card>
+<mat-card @smoothEnter>
   <mat-card-title>
     <h1>SpaceX Missions</h1>
   </mat-card-title>
 
   <mat-card-content>
-    <ul>
-      <li *ngFor="let ship of ships$ | async" [routerLink]="ship.id">
-        {{ ship.name }} / {{ ship.type }}
+    <ul class="list">
+      <li class="child" *ngFor="let mission of missions$ | async">
+        <a mat-button [routerLink]="mission.id">
+          {{ mission.name }}
+        </a>
       </li>
     </ul>
   </mat-card-content>

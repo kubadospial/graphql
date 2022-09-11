@@ -7,6 +7,6 @@ import { SpaceXService } from './spacex.service';
 export class DetailsResolver implements Resolve<any> {
   constructor(private _spaceX: SpaceXService) {}
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
-    return this._spaceX.getShipDetails(route.params['name']);
+    return this._spaceX.getMissionDetails(route.params['name']);
   }
 }
