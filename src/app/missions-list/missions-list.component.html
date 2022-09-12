@@ -1,9 +1,12 @@
-<mat-card @smoothEnter>
+<mat-card @slideUp *ngIf="!(isMoving$ | async)">
+  <div class="loader-wrap" *ngIf="isLoading$ | async">
+    <mat-spinner class="loader"> </mat-spinner>
+  </div>
   <mat-card-title>
     <h1>SpaceX Missions</h1>
   </mat-card-title>
 
-  <mat-card-content>
+  <mat-card-content class="card-content">
     <ul class="list">
       <li class="child" *ngFor="let mission of missions$ | async">
         <a mat-button [routerLink]="mission.id">

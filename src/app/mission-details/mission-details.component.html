@@ -1,33 +1,34 @@
-<ng-container *ngIf="details$ | async as details">
-  <mat-card @smoothEnter>
-    <mat-card-title>
-      <h1>Mission {{ details.name }}</h1>
-    </mat-card-title>
+<mat-card class="card" @slideUp *ngIf="!(isMoving$ | async)">
+  <div class="loader-wrap" *ngIf="isLoading$ | async">
+    <mat-spinner class="loader"> </mat-spinner>
+  </div>
+  <mat-card-title *ngIf="details$ | async as details">
+    <h1>Mission {{ details.name }}</h1>
+  </mat-card-title>
 
-    <mat-card-content>
-      <p>{{ details.description }}</p>
+  <mat-card-content *ngIf="details$ | async as details">
+    <p>{{ details.description }}</p>
 
-      <h2>Payloads</h2>
-      <ng-container *ngFor="let payload of details.payloads">
-        <section class="payload" *ngIf="payload">
-          <h3>{{ payload?.id }}</h3>
-          <p>Nationality: {{ payload?.nationality }}</p>
-          <p>Orbit: {{ payload?.orbit }}</p>
-          <p>Payload type: {{ payload?.payload_type }}</p>
-          <p>Payload mass (kg): {{ payload?.payload_mass_kg }}</p>
-        </section>
-      </ng-container>
-
-      <section class="footer">
-        <div class="link">
-          <a mat-button href="{{ details.twitter }}" target="_blank">Twitter</a>
-          <a mat-button href="{{ details.website }}" target="_blank">Website</a>
-          <a mat-button href="{{ details.wikipedia }}" target="_blank"
-            >Wikipedia</a
-          >
-        </div>
-        <button mat-button color="primary" [routerLink]="['../']">back</button>
+    <h2>Payloads</h2>
+    <ng-container *ngFor="let payload of details.payloads">
+      <section class="payload" *ngIf="payload">
+        <h3>{{ payload?.id }}</h3>
+        <p>Nationality: {{ payload?.nationality }}</p>
+        <p>Orbit: {{ payload?.orbit }}</p>
+        <p>Payload type: {{ payload?.payload_type }}</p>
+        <p>Payload mass (kg): {{ payload?.payload_mass_kg }}</p>
       </section>
-    </mat-card-content>
-  </mat-card>
-</ng-container>
+    </ng-container>
+
+    <section class="footer">
+      <div class="link">
+        <a mat-button href="{{ details.twitter }}" target="_blank">Twitter</a>
+        <a mat-button href="{{ details.website }}" target="_blank">Website</a>
+        <a mat-button href="{{ details.wikipedia }}" target="_blank"
+          >Wikipedia</a
+        >
+      </div>
+      <button mat-button color="primary" [routerLink]="['../']">back</button>
+    </section>
+  </mat-card-content>
+</mat-card>

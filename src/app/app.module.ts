@@ -7,7 +7,6 @@ import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AnimationModule } from './animation/animation.module';
 @NgModule({
@@ -19,7 +18,6 @@ import { AnimationModule } from './animation/animation.module';
     HttpClientModule,
     BrowserAnimationsModule,
     NgbModule,
-    MatProgressSpinnerModule,
     AnimationModule,
   ],
   providers: [],

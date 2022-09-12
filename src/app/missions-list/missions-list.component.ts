@@ -2,9 +2,12 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
-import { SMOOTH_ENTER } from '../common/animations';
+import { SLIDE_UP } from '../common/animations';
 import { SpaceXService } from '../spacex/spacex.service';
 import { MatButtonModule } from '@angular/material/button';
+import { AppService } from '../app.service';
+import { BehaviorSubject, tap } from 'rxjs';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-missions-list',
@@ -12,11 +15,27 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./missions-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
-  imports: [CommonModule, RouterModule, MatCardModule, MatButtonModule],
-  animations: [SMOOTH_ENTER],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatCardModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
+  ],
+  animations: [SLIDE_UP],
+  host: { '[class.col-6]': 'true' },
 })
 export class MissionsListComponent {
-  missions$ = this._spaceX.getMissionsList();
+  private _isLoadingSub = new BehaviorSubject<boolean>(true);
 
-  constructor(private _spaceX: SpaceXService) {}
+  missions$ = this._spaceX
+    .getMissionsList()
+    .pipe(tap(() => this._isLoadingSub.next(false)));
+  isMoving$ = this._appService.isMoving$;
+  isLoading$ = this._isLoadingSub.asObservable();
+
+  constructor(
+    private _spaceX: SpaceXService,
+    private _appService: AppService
+  ) {}
 }

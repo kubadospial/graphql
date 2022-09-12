@@ -63,4 +63,18 @@ html,
 body {
   height: 100%;
   background-color: #000;
+  overflow: hidden;
+}
+
+.loader-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffffff75;
 }

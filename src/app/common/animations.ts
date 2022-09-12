@@ -10,3 +10,14 @@ const getEnter = (name: string, time: string) =>
 export const SMOOTH_ENTER = getEnter('smoothEnter', '500ms');
 
 export const QUICK_ENTER = getEnter('quickEnter', '200ms');
+
+export const SLIDE_UP = trigger('slideUp', [
+  transition(':enter', [
+    style({ transform: 'translate3d(0, 100vh, 0)' }),
+    animate(1000, style({ transform: 'translate3d(0, 0, 0)' })),
+  ]),
+  transition(':leave', [
+    style({ transform: 'translate3d(0, 0, 0)' }),
+    animate(300, style({ transform: 'translate3d(0, 100vh, 0)' })),
+  ]),
+]);

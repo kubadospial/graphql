@@ -39,7 +39,7 @@ export class CanvasComponent {
     );
 
   rotate$: Observable<[x: number, y: number, z: number]> = interval(10).pipe(
-    map((e) => [e * 0.0001, 0, 0] as [x: number, y: number, z: number]),
+    map((e) => [0, e * 0.0005, 0] as [x: number, y: number, z: number]),
     shareReplay(1)
   );
 
