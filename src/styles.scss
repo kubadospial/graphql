@@ -78,3 +78,9 @@ body {
   height: 100%;
   background-color: #ffffff75;
 }
+
+.card {
+  max-height: calc(100vh - 50px);
+  min-height: 400px;
+  overflow: auto;
+}

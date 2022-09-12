@@ -6,7 +6,7 @@
     <h1>SpaceX Missions</h1>
   </mat-card-title>
 
-  <mat-card-content class="card-content">
+  <mat-card-content class="card">
     <ul class="list">
       <li class="child" *ngFor="let mission of missions$ | async">
         <a mat-button [routerLink]="mission.id">

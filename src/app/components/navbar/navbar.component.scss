@@ -1,0 +1,22 @@
+:host {
+  position: absolute;
+  z-index: 9;
+  display: flex;
+  color: #fff;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  font-size: 20px;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  height: auto;
+  .fill-white {
+    fill: #fff;
+  }
+}
+.powered {
+  margin-right: 10px;
+}
