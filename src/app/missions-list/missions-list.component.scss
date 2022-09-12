@@ -1,5 +1,14 @@
 :host {
-  max-height: 100vh;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
 }
 
 .list {

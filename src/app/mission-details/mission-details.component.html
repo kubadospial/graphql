@@ -1,14 +1,11 @@
-<mat-card class="card" @slideUp *ngIf="!(isMoving$ | async)">
+<section class="card col-12 col-md-6" @slideUp *ngIf="!(isMoving$ | async)">
   <div class="loader-wrap" *ngIf="isLoading$ | async">
     <mat-spinner class="loader"> </mat-spinner>
   </div>
-  <mat-card-title *ngIf="details$ | async as details">
+
+  <ng-container *ngIf="details$ | async as details">
     <h1>Mission {{ details.name }}</h1>
-  </mat-card-title>
-
-  <mat-card-content *ngIf="details$ | async as details">
     <p>{{ details.description }}</p>
-
     <h2>Payloads</h2>
     <ng-container *ngFor="let payload of details.payloads">
       <section class="payload" *ngIf="payload">
@@ -30,5 +27,5 @@
       </div>
       <button mat-button color="primary" [routerLink]="['../']">back</button>
     </section>
-  </mat-card-content>
-</mat-card>
+  </ng-container>
+</section>

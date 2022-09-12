@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
 import { RouterModule } from '@angular/router';
 import { SLIDE_UP } from '../common/animations';
 import { SpaceXService } from '../spacex/spacex.service';
@@ -18,12 +17,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   imports: [
     CommonModule,
     RouterModule,
-    MatCardModule,
     MatButtonModule,
     MatProgressSpinnerModule,
   ],
   animations: [SLIDE_UP],
-  host: { '[class.col-6]': 'true' },
 })
 export class MissionsListComponent {
   private _isLoadingSub = new BehaviorSubject<boolean>(true);

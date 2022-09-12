@@ -1,9 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MissionsListComponent } from './missions-list/missions-list.component';
 
 const routes: Routes = [
-  { path: '', component: MissionsListComponent },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./missions-list/missions-list.component').then(
+        (c) => c.MissionsListComponent
+      ),
+  },
   {
     path: ':name',
     loadComponent: () =>

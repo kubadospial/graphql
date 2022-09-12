@@ -2,11 +2,14 @@
   position: absolute;
   z-index: 9;
   display: flex;
-  color: #fff;
+  margin-top: 15px;
+  @media (max-width: 900px) {
+    flex-direction: column;
+    align-items: center;
+  }
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  font-size: 20px;
 }
 
 .logo {
@@ -18,5 +21,7 @@
   }
 }
 .powered {
+  color: #fff;
+  font-size: 20px;
   margin-right: 10px;
 }

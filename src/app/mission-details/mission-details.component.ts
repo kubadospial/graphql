@@ -2,7 +2,6 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { shareReplay, tap, BehaviorSubject } from 'rxjs';
-import { MatCardModule } from '@angular/material/card';
 import { SLIDE_UP } from '../common/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { AppService } from '../app.service';
@@ -17,13 +16,11 @@ import { SpaceXService } from '../spacex/spacex.service';
   standalone: true,
   imports: [
     CommonModule,
-    MatCardModule,
     RouterModule,
     MatButtonModule,
     MatProgressSpinnerModule,
   ],
   animations: [SLIDE_UP],
-  host: { '[class.col-6]': 'true' },
 })
 export class MissionDetailsComponent {
   private _isLoadingSub = new BehaviorSubject<boolean>(true);
