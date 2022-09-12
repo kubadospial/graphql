@@ -1,0 +1,9 @@
+<th-meshPhongMaterial
+  #mat
+  [shininess]="30"
+  [color]="['#FFFFFF']"
+></th-meshPhongMaterial>
+<th-sphereGeometry #geo [args]="[1, 12, 12]"></th-sphereGeometry>
+
+<th-mesh [geometry]="geo.objRef" [material]="mat.objRef" [position]="position">
+</th-mesh>

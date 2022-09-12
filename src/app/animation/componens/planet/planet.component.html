@@ -1,0 +1,11 @@
+<ng-container *ngIf="planet">
+  <th-meshStandardMaterial #material [map]="planet"></th-meshStandardMaterial>
+  <th-sphereGeometry #geo [args]="[10, 32, 32]"></th-sphereGeometry>
+  <th-mesh
+    [geometry]="geo.objRef"
+    [material]="material.objRef"
+    [rotation]="rotation"
+    [position]="position"
+  >
+  </th-mesh>
+</ng-container>
