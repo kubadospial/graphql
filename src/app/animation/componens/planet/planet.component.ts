@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { Texture } from 'three';
-import { TextureState } from '../../states/texture.state';
+import { TextureState } from '../../states';
 
 @Component({
   selector: 'app-planet',

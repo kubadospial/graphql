@@ -7,34 +7,36 @@
 
     <!-- stars -->
     <app-star *ngFor="let position of stars" [position]="position"></app-star>
+    <!-- stars END -->
 
     <!-- earth -->
     <app-planet
       *ngIf="rotate$ | async as rotation"
-      [url]="'../assets/images/earth.jpg'"
       [rotation]="rotation"
-      [position]="[0, 0, 12]"
+      [url]="earth.url"
+      [position]="earth.position"
     ></app-planet>
     <!-- END earth -->
 
     <!-- mars -->
     <app-planet
       *ngIf="rotate$ | async as rotation"
-      [url]="'../assets/images/mars.jpg'"
       [rotation]="rotation"
-      [position]="[490, 500, 500]"
+      [url]="mars.url"
+      [position]="mars.position"
     ></app-planet>
-
     <!-- END mars -->
 
-    <th-perspectiveCamera
-      *ngIf="position$ | async as position"
-      [args]="[75, this.screenRatio, 0.1, 1000]"
-      [position]="position"
-      [lookAt]="[0, 0, 0]"
-    >
-      <!-- <th-orbitControls></th-orbitControls> -->
-    </th-perspectiveCamera>
+    <ng-container *ngIf="screenRatio$ | async as screenRatio">
+      <th-perspectiveCamera
+        *ngIf="position$ | async as position"
+        [args]="[75, screenRatio, 0.1, 1000]"
+        [position]="position"
+        [lookAt]="[0, 0, 0]"
+      >
+        <!-- <th-orbitControls></th-orbitControls> -->
+      </th-perspectiveCamera>
+    </ng-container>
     <!-- <th-gridHelper [args]="[10, 10]"></th-gridHelper> -->
   </th-scene>
 </th-canvas>
