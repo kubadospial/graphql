@@ -19,4 +19,12 @@
 .child {
   padding: 15px;
   margin: 10px 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s all;
+  &:hover {
+    background-color: #fff;
+  }
 }

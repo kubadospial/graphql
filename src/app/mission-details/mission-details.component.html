@@ -1,10 +1,24 @@
-<section class="card col-12 col-md-6" @slideUp *ngIf="!(isMoving$ | async)">
-  <div class="loader-wrap" *ngIf="isLoading$ | async">
-    <mat-spinner class="loader"> </mat-spinner>
-  </div>
-
-  <ng-container *ngIf="details$ | async as details">
-    <h1>Mission {{ details.name }}</h1>
+<div
+  class="loader-wrap col-12 col-md-6"
+  *ngIf="!(isMoving$ | async) && (isLoading$ | async)"
+>
+  <mat-spinner class="loader"> </mat-spinner>
+</div>
+<ng-container *ngIf="details$ | async as details">
+  <section
+    class="card col-12 col-md-6"
+    @slideUp
+    *ngIf="!(isMoving$ | async) && !(isLoading$ | async)"
+  >
+    <div class="header">
+      <h1 class="header__title">Mission {{ details.name }}</h1>
+      <img
+        class="header__back"
+        src="assets/back-button.png"
+        alt="back"
+        (click)="goBack()"
+      />
+    </div>
     <p>{{ details.description }}</p>
     <h2>Payloads</h2>
     <ng-container *ngFor="let payload of details.payloads">
@@ -25,7 +39,6 @@
           >Wikipedia</a
         >
       </div>
-      <button mat-button color="primary" [routerLink]="['../']">back</button>
     </section>
-  </ng-container>
-</section>
+  </section>
+</ng-container>

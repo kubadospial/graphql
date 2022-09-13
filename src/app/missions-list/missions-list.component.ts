@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SLIDE_UP } from '../common/animations';
 import { SpaceXService } from '../spacex/spacex.service';
 import { MatButtonModule } from '@angular/material/button';
 import { AppService } from '../app.service';
-import { BehaviorSubject, tap } from 'rxjs';
+import { BehaviorSubject, tap, switchMap } from 'rxjs';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
@@ -24,15 +24,25 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 })
 export class MissionsListComponent {
   private _isLoadingSub = new BehaviorSubject<boolean>(true);
+  private _missionsSub = new BehaviorSubject<boolean>(false);
 
-  missions$ = this._spaceX
-    .getMissionsList()
+  missions$ = this._missionsSub
+    .asObservable()
+    .pipe(switchMap((is) => this._spaceX.getMissionsList(is)))
     .pipe(tap(() => this._isLoadingSub.next(false)));
   isMoving$ = this._appService.isMoving$;
   isLoading$ = this._isLoadingSub.asObservable();
 
   constructor(
     private _spaceX: SpaceXService,
-    private _appService: AppService
+    private _appService: AppService,
+    private _router: Router
   ) {}
+
+  goToDetails(id: string) {
+    this._missionsSub.next(true);
+    setTimeout(() => {
+      this._router.navigate([id]);
+    }, 500);
+  }
 }

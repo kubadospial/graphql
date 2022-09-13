@@ -7,6 +7,25 @@
   justify-content: center;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  &__title {
+    margin: 0;
+  }
+  &__back {
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    transition: 0.3s all;
+    &:hover {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
 .payload {
   box-shadow: 0px 2px 1px -1px rgb(0 0 0 / 20%),
     0px 1px 1px 0px rgb(0 0 0 / 14%), 0px 1px 3px 0px rgb(0 0 0 / 12%);
