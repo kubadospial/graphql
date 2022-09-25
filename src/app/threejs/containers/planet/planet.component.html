@@ -1,0 +1,31 @@
+<ng-container *ngIf="planet">
+  <th-meshStandardMaterial
+    #material
+    [map]="planet"
+    [bumpMap]="bumpMap"
+    [bumpScale]="bumpScale ?? 0"
+  ></th-meshStandardMaterial>
+  <th-sphereGeometry #geo [args]="[10, 32, 32]"></th-sphereGeometry>
+  <th-mesh
+    [geometry]="geo.objRef"
+    [material]="material.objRef"
+    [rotation]="rotation"
+    [position]="position"
+  >
+  </th-mesh>
+  <ng-container *ngIf="clouds">
+    <th-meshStandardMaterial
+      #cloudsMat
+      [map]="clouds"
+      [transparent]="true"
+    ></th-meshStandardMaterial>
+    <th-sphereGeometry #cloudsGeo [args]="[10.1, 32, 32]"></th-sphereGeometry>
+    <th-mesh
+      [geometry]="cloudsGeo.objRef"
+      [material]="cloudsMat.objRef"
+      [rotation]="[0, rotation[1] * 1.45, 0]"
+      [position]="position"
+    >
+    </th-mesh>
+  </ng-container>
+</ng-container>

@@ -1,0 +1,31 @@
+:host {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  text-align: center;
+}
+
+.list {
+  padding: 0;
+  list-style: none;
+}
+
+.child {
+  padding: 1.5rem;
+  margin: 1rem 0;
+  width: 100%;
+  display: block;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s all;
+
+  &:hover {
+    box-shadow: 0 0 1rem #fff;
+  }
+}

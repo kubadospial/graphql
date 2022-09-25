@@ -1,0 +1,50 @@
+<div
+  class="loader-wrap col-12 col-md-6"
+  *ngIf="!(isMoving$ | async) && (isLoading$ | async)"
+>
+  <mat-spinner class="loader"> </mat-spinner>
+</div>
+<ng-container *ngIf="details$ | async as details">
+  <section
+    class="card-bg col-12 col-md-6"
+    @slideUp
+    *ngIf="!(isMoving$ | async) && !(isLoading$ | async)"
+  >
+    <div class="header">
+      <h1 class="header__title">Mission {{ details.name }}</h1>
+      <img
+        class="header__back"
+        src="assets/back-button.svg"
+        alt="back"
+        (click)="goBack()"
+      />
+    </div>
+
+    <ng-container *ngIf="details.manufacturers">
+      <h2>Mission manufacturers</h2>
+      <h3 *ngFor="let man of details.manufacturers">{{ man }}</h3>
+    </ng-container>
+
+    <p>{{ details.description }}</p>
+    <h2>Payloads</h2>
+    <ng-container *ngFor="let payload of details.payloads">
+      <section class="payload" *ngIf="payload">
+        <h3>{{ payload?.id }}</h3>
+        <p>Nationality: {{ payload?.nationality }}</p>
+        <p>Orbit: {{ payload?.orbit }}</p>
+        <p>Payload type: {{ payload?.payload_type }}</p>
+        <p>Payload mass (kg): {{ payload?.payload_mass_kg }}</p>
+      </section>
+    </ng-container>
+
+    <section class="footer">
+      <div class="links">
+        <a class="link" href="{{ details.twitter }}" target="_blank">Twitter</a>
+        <a class="link" href="{{ details.website }}" target="_blank">Website</a>
+        <a class="link" href="{{ details.wikipedia }}" target="_blank"
+          >Wikipedia</a
+        >
+      </div>
+    </section>
+  </section>
+</ng-container>

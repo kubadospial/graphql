@@ -1,0 +1,53 @@
+version: 2.1
+orbs:
+  firebase-deploy: azdevs/firebase-deploy@1.0.0
+jobs:
+  build:
+    docker:
+      - image: circleci/node:lts
+    resource_class: medium
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            - v1-dependencies-
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm run build
+      - save_cache:
+          paths:
+            - firebase.json
+            - .firebaserc
+            - dist
+          key: application-dist-{{ .Environment.CIRCLE_WORKFLOW_ID }}
+  deploy:
+    docker:
+      - image: circleci/node:lts
+    resource_class: medium
+    steps:
+      - restore_cache:
+          name: "Restore dist"
+          keys:
+            - application-dist-{{ .Environment.CIRCLE_WORKFLOW_ID }}
+            - application-dist
+      - firebase-deploy/deploy:
+          token: $FIREBASE_TOKEN
+workflows:
+  build-and-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only:
+                - master
+      - hold:
+          type: approval
+          requires:
+            - build
+      - deploy:
+          requires:
+            - hold

@@ -1,0 +1,12 @@
+.card-bg {
+  padding: 2rem;
+  max-height: calc(100vh - 10rem);
+  min-height: 40rem;
+  overflow: auto;
+  background-color: transparent;
+  border: none;
+  @media (max-width: 900px) {
+    max-height: calc(100vh - 20rem);
+  }
+  @include scroll();
+}

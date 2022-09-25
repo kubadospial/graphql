@@ -1,0 +1,17 @@
+.main {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: flex-end;
+}
+
+.footer {
+  position: absolute;
+  z-index: 999;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  a {
+    color: #b1b1b1;
+  }
+}

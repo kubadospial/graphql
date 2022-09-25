@@ -1,0 +1,13 @@
+<app-navbar></app-navbar>
+<app-canvas></app-canvas>
+<main class="container main">
+  <router-outlet></router-outlet>
+</main>
+<footer class="footer">
+  <a href="https://github.com/kubadospial/graphql" target="_blank"
+    >Developed by @kubadospial
+  </a>
+</footer>
+<splash-screen @quickLeave *ngIf="!(texturesLoaded$ | async)"
+  >{{ percentageLoaded$ | async }}%</splash-screen
+>

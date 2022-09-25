@@ -1,0 +1,25 @@
+<div
+  class="loader-wrap col-12 col-md-6"
+  *ngIf="!(isMoving$ | async) && (isLoading$ | async)"
+>
+  <mat-spinner class="loader"> </mat-spinner>
+</div>
+<ng-container *ngIf="missions$ | async as missions">
+  <section
+    class="card-bg col-12 col-md-3"
+    @slideUp
+    *ngIf="!(isMoving$ | async) && !(isLoading$ | async)"
+  >
+    <h1 class="title">Missions</h1>
+
+    <ul class="list">
+      <li
+        class="child"
+        *ngFor="let mission of missions"
+        (click)="goToDetails(mission.id)"
+      >
+        {{ mission.name }}
+      </li>
+    </ul>
+  </section>
+</ng-container>
