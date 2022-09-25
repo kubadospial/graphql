@@ -1,13 +1,12 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { SpaceXModule } from './spacex';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { ThreeJsModule } from './threejs';
+
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent, MAIN_COMPONENTS } from './components';
 
 @NgModule({
@@ -18,7 +17,6 @@ import { AppComponent, MAIN_COMPONENTS } from './components';
     SpaceXModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgbModule,
     ThreeJsModule,
   ],
   bootstrap: [AppComponent],
